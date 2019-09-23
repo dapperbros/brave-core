@@ -128,6 +128,14 @@ class SearchProviders {
 
   static bool IsSearchEngine(
       const std::string& url);
+
+  static bool IsSearchEngineWithResultsPages(
+      const std::string& url);
+
+ private:
+  static bool HasResultsPagesForUrl(
+      const std::string& url,
+      const SearchProviderInfo& search_provider);
 };
 
 }  // namespace ads

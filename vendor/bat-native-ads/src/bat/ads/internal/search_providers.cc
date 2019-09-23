@@ -34,17 +34,54 @@ bool SearchProviders::IsSearchEngine(
       break;
     }
 
-    size_t index = search_provider.search_template.find('{');
-    std::string substring = search_provider.search_template.substr(0, index);
-    size_t href_index = url.find(substring);
-
-    if (index != std::string::npos && href_index != std::string::npos) {
+    if (HasResultsPagesForUrl(url, search_provider)) {
       is_a_search = true;
       break;
     }
   }
 
   return is_a_search;
+}
+
+bool SearchProviders::IsSearchEngineWithResultsPages(
+    const std::string& url) {
+  auto visited_url = GURL(url);
+  if (!visited_url.has_host()) {
+    return false;
+  }
+
+  auto is_a_search = false;
+
+  for (const auto& search_provider : _search_providers) {
+    auto search_provider_hostname = GURL(search_provider.hostname);
+    if (!search_provider_hostname.is_valid()) {
+      continue;
+    }
+
+    if (HasResultsPagesForUrl(url, search_provider)) {
+      is_a_search = true;
+      break;
+    }
+  }
+
+  return is_a_search;
+}
+
+bool SearchProviders::HasResultsPagesForUrl(
+    const std::string& url,
+    const SearchProviderInfo& search_provider) {
+  size_t index = search_provider.search_template.find('{');
+  if (index == std::string::npos) {
+    return false;
+  }
+
+  std::string substring = search_provider.search_template.substr(0, index);
+  size_t href_index = url.find(substring);
+  if (href_index == std::string::npos) {
+    return false;
+  }
+
+  return true;
 }
 
 }  // namespace ads
