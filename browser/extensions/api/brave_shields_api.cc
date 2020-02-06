@@ -88,7 +88,7 @@ BraveShieldsHostnameCosmeticResourcesFunction::Run() {
 
   auto result_list = std::make_unique<base::ListValue>();
 
-  result_list->GetList().push_back(std::move(*resources));
+  result_list->Insert(result_list->GetList().end(), std::move(*resources));
 
   return RespondNow(ArgumentList(std::move(result_list)));
 }
@@ -130,8 +130,9 @@ BraveShieldsHiddenClassIdSelectorsFunction::Run() {
 
   auto result_list = std::make_unique<base::ListValue>();
 
-  result_list->GetList().push_back(std::move(*hide_selectors));
-  result_list->GetList().push_back(std::move(*custom_selectors));
+  result_list->Insert(result_list->GetList().end(), std::move(*hide_selectors));
+  result_list->Insert(result_list->GetList().end(),
+                      std::move(*custom_selectors));
 
   return RespondNow(ArgumentList(std::move(result_list)));
 }

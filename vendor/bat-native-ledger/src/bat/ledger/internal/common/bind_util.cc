@@ -19,7 +19,7 @@ std::string FromContributionQueueToString(ledger::ContributionQueuePtr info) {
     publisher.SetStringKey("publisher_key", item->publisher_key);
     publisher.SetStringKey("amount_percent",
         std::to_string(item->amount_percent));
-    publishers.GetList().push_back(std::move(publisher));
+    publishers.Insert(publishers.GetList().end(), std::move(publisher));
   }
 
   base::Value queue(base::Value::Type::DICTIONARY);
@@ -238,7 +238,7 @@ std::string FromContributionToString(const ledger::ContributionInfoPtr info) {
     publisher.SetStringKey("publisher_key", item->publisher_key);
     publisher.SetDoubleKey("total_amount", item->total_amount);
     publisher.SetDoubleKey("contributed_amount", item->contributed_amount);
-    publishers.GetList().push_back(std::move(publisher));
+    publishers.Insert(publishers.GetList().end(), std::move(publisher));
   }
 
   base::Value queue(base::Value::Type::DICTIONARY);
@@ -339,7 +339,8 @@ std::string FromContributionListToString(ledger::ContributionInfoList list) {
   base::Value items(base::Value::Type::LIST);
 
   for (auto& contribution : list) {
-    items.GetList().push_back(
+    items.Insert(
+        items.GetList().end(),
         base::Value(FromContributionToString(std::move(contribution))));
   }
 
