@@ -148,6 +148,8 @@ interface BatLedger {
   GetContributionReport(ledger.mojom.ActivityMonth month, int32 year) => (array<ledger.mojom.ContributionReportInfo> list);
 
   GetAllContributions() => (array<ledger.mojom.ContributionInfo> list);
+
+  GetMonthlyReport(ledger.mojom.ActivityMonth month, int32 year) => (ledger.mojom.Result result, ledger.mojom.MonthlyReportInfo report);
 };
 
 interface BatLedgerClient {
