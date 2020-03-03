@@ -66,7 +66,7 @@ extern const char kSyncDeviceList[];
 // the sync api version from the server
 extern const char kSyncApiVersion[];
 // The version of bookmarks state: 0,1,... .
-// Current to migrate to is 1.
+// Current to migrate to is 3.
 extern const char kSyncMigrateBookmarksVersion[];
 // Cached object_id list for unconfirmed records
 extern const char kSyncRecordsToResend[];

@@ -258,6 +258,7 @@ class BraveProfileSyncServiceImpl
   void ResetSyncInternal();
 
   void SetPermanentNodesOrder(const std::string& base_order);
+  void MigrateDuplicatedBookmarksObjectIds();
 
   std::unique_ptr<jslib::SyncRecord> BookmarkNodeToSyncBookmark(
       const bookmarks::BookmarkNode* node);
