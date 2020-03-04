@@ -1,0 +1,12 @@
+diff --git a/chrome/browser/ui/webui/settings/people_handler.cc b/chrome/browser/ui/webui/settings/people_handler.cc
+index 6dc8e03ca5ac6e10a59708d75796fa99a24eada1..f00287f65870cc765161bbbee581c09431145d64 100644
+--- a/chrome/browser/ui/webui/settings/people_handler.cc
++++ b/chrome/browser/ui/webui/settings/people_handler.cc
+@@ -1045,6 +1045,7 @@ void PeopleHandler::MarkFirstSetupComplete() {
+ }
+ 
+ bool PeopleHandler::IsProfileAuthNeededOrHasErrors() {
++  return false;
+   return !IdentityManagerFactory::GetForProfile(profile_)
+               ->HasPrimaryAccount() ||
+          SigninErrorControllerFactory::GetForProfile(profile_)->HasError();
