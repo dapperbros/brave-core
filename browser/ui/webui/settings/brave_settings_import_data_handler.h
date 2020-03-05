@@ -7,6 +7,7 @@
 #define BRAVE_BROWSER_UI_WEBUI_SETTINGS_BRAVE_SETTINGS_IMPORT_DATA_HANDLER_H_
 
 #include "base/memory/weak_ptr.h"
+#include "brave/browser/ui/webui/settings/brave_settings_import_data_handler_base.h"
 #include "chrome/browser/ui/webui/settings/settings_import_data_handler.h"
 #include "content/public/browser/web_contents_observer.h"
 
@@ -26,7 +27,7 @@ namespace settings {
 // upstream import html/js source code.
 
 // NOTE: This is no-op class for other platforms except macOS.
-class BraveImportDataHandler : public ImportDataHandler,
+class BraveImportDataHandler : public BraveImportDataHandlerBase,
                                       content::WebContentsObserver {
  public:
   BraveImportDataHandler();
@@ -37,7 +38,7 @@ class BraveImportDataHandler : public ImportDataHandler,
 
  private:
 #if defined(OS_MACOSX)
-  // ImportDataHandler overrides:
+  // BraveImportDataHandlerBase overrides:
   void StartImport(const importer::SourceProfile& source_profile,
                    uint16_t imported_items) override;
 
