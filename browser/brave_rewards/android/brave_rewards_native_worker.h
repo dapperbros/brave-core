@@ -223,8 +223,8 @@ class BraveRewardsNativeWorker : public brave_rewards::RewardsServiceObserver,
     void OnRewardsMainEnabled(brave_rewards::RewardsService* rewards_service,
         bool rewards_main_enabled) override;
 
-    bool IsAnonWallet(JNIEnv* env, const
-        base::android::JavaParamRef<jobject>& jcaller);
+    bool IsAnonWallet(JNIEnv* env,
+        const base::android::JavaParamRef<jobject>& jcaller);
 
     void OnFetchPromotions(brave_rewards::RewardsService* rewards_service,
         const uint32_t result,
